@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>LaunchPad JS</title>
+
+	<!-- GENERAL STYLING -->
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<!-- ANIMATIONS FOR OPENING APP -->
+	<link href="css/animate.css" rel="stylesheet" type="text/css">
+	<!-- GATHER LOCAL COMPUTER INFO -->
+	<script src="js/computerinfo.js"></script>
+
+</head>
+
+<body>
+
+<!-- WRAPPER FOR TRANSITIONS -->
+<div id="wrapper" class="animsition">
+
+	<!-- TITLE BAR -->
+	<div id="title-bar">
+		<!-- WINDOW ICON -->
+		<img id="item-titleIcon" class="rotateInUpRight animated fly-out" src="icon.png" />
+		<!-- TITLE -->
+		<div class="slideInDown animated" id="title">LaunchPad JS</div>
+		<!-- CLOSE BUTTON -->
+		<button class="fadeIn animated" id="close" href="#">&times;</button>
+	</div>
+
+	<!-- CONTAINER LEFT -->
+	<div id="container-left">
+
+		<!-- SEARCH BOX -->
+		<div class="slideInLeft animated" id="area-searchbox">
+			<input id="item-searchbox" type="text" onkeyup="filterListBox();" />
+		</div>
+		<div class="clear"></div>
+
+		<!-- LIST BOX -->
+		<div class="fadeInUpBig animated" id="area-listbox">
+			<select id="list-box" size="2" class="list-box" name="listbox" onchange="populateHostnameBox();"></select>
+		</div>
+
+		<!-- USERNAME (HIDDEN BY DEFAULT) -->
+		<div id="section-Username" style="display: none;">
+			<button id="close-username" href="#">&times;</button>
+			<div style="line-height:20%;"><br></div>
+			Alternate Credentials:
+			<input id="item-Username" type="text" value="" size="21" onkeypress="isEnterSSH();">
+			<div id="item-UsernameNote">
+				NOTE: Setup your username in the "Default Settings" in SecureCRT's Settings. <br>(This means you Weezy.)
+			</div>
+		</div>
+	</div>
+
+	<!-- RIGHT SIDE CONTAINER -->
+	<div id="container-right">
+
+		<!-- T568B AREA -->
+		<div class="fadeIn animated" id="area-t568b">
+			<div class="rTable">
+				<div class="rTableRow">
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png">
+						<img class="button-t568b hvr-grow" src="images/t568b/1.png" onclick="backgroundtop1();ChangeColourTop('e9e9e9')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank1();javascript:ChangeColourTop('ffa9ff')">
+						<img class="button-t568b hvr-grow" src="images/t568b/2.png" onclick="backgroundtop2();ChangeColourTop('white')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank2();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-t568b hvr-grow" src="images/t568b/3.png" onclick="javascript:backgroundtop3();javascript:ChangeColourTop('e9e9e9')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank3();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-t568b hvr-grow" src="images/t568b/4.png" onclick="javascript:backgroundtop4();javascript:ChangeColourTop('yellow')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank4();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-t568b hvr-grow" src="images/t568b/5.png" onclick="javascript:backgroundtop5();javascript:ChangeColourTop('e9e9e9')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank5();javascript:ChangeColourTop('white')">
+						<img class="button-t568b hvr-grow" src="images/t568b/6.png" onclick="javascript:backgroundtop6();javascript:ChangeColourTop('e9e9e9')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank6();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-t568b hvr-grow" src="images/t568b/7.png" onclick="javascript:backgroundtop7();javascript:ChangeColourTop('white')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank7();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-t568b hvr-grow" src="images/t568b/8.png" onclick="javascript:backgroundtop8();javascript:ChangeColourTop('e9e9e9')">
+					</div>
+					<div class="rTableCell">
+						<img class="button-blank-filler" src="images/1x1.png" onclick="javascript:backgroundtopblank8();javascript:ChangeColourTop('e9e9e9')">
+						<img class="button-toggle" src="images/toggle.png" onclick="toggleSimpleMode();" title="Toggle Simple Mode!!">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- COMPUTER AREA -->
+		<div id="area-computerinfo">
+			<div style="line-height:3px;"><br></div>
+			<div class="item-computerinfo slideInRight animated font-courier-new">
+				<script>
+					document.write(hostname);
+				</script>
+			</div>
+			<div class="item-computerinfo slideInRight animated font-courier-new">
+				<script>
+					document.write(ipaddress);
+				</script>
+			</div>
+			<div class="item-computerinfo slideInRight animated font-courier-new">
+				<script>
+					document.write(macaddress);
+				</script>
+			</div>
+			<div style="line-height:3px;"><br></div>
+		</div>
+
+		<!-- SSH AREA -->
+		<div id="area-ssh" class="slideInRight animated" >
+			
+			<!--DIVIDER-->
+			<hr>
+			<div style="line-height:3px;"><br></div>
+
+			<!-- HOSTNAME -->
+			<div id="section-HostnameBox">
+				<input id="item-Hostname" type="text" value="" onkeypress="">
+			</div>
+			
+			<!-- USERNAME SHOW BUTTON -->
+			<div id="section-UsernameButton">
+				<img id="item-UsernameButton" src="images/username.png" onclick="toggleUsername();">
+			</div>
+			<div class="clear"></div>
+
+			<!--SPACER-->
+			<div style="line-height:3px;"><br></div>
+			
+			<!-- LOG SSH TO DESKTOP -->
+			<div id="section-sshLogToDesktop">
+				LOG
+				<div class="onoffswitch">
+					<input id="sshLogToDesktopSwitch" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" checked>
+					<label class="onoffswitch-label" for="sshLogToDesktopSwitch"></label>
+				</div>
+			</div>
+			
+			<!-- SSH BUTTON -->
+			<div id="section-sshButton">
+				<a class="ghost-button is-green ssh-button" onclick="sshSecureCRT();" href="#"><div style="line-height:1px;"><br></div>SSH</a>
+			</div>
+			
+			<!-- 2FA BUTTON -->
+			<!-- <div id="section-2faButton">
+				<a class="ghost-button is-green twoFA-button" onclick="sshSecureCRT2FA();" href="#"><div style="line-height:1px;"><br></div>2FA</a>
+			</div>
+			<div class="clear"></div> -->
+
+			<!-- HTTPS BUTTON -->
+			<div id="section-httpsButton">
+				<a class="ghost-button is-green https-button" onclick="connectHTTPS();" href="#"><div style="line-height:1px;"><br></div>HTTPS</a>
+			</div>
+			<div class="clear"></div>
+			
+			<!-- SPACER
+			<div style="line-height:3px;"><br></div>
+			
+			<!-- SCP BUTTON 
+			<div id="section-scpButton">
+				<a class="ghost-button is-yellow scp-button" onclick="scpSecureFX();" href="#">SCP</a>
+			</div>
+			
+			<!-- SFTP BUTTON 
+			<div id="section-sftpButton">
+				<a class="ghost-button is-yellow sftp-button" onclick="sftpSecureFX();" href="#">SFTP</a>
+			</div>
+			
+			<!-- FTP BUTTON 
+			<div id="section-ftpButton">
+				<a class="ghost-button is-red ftp-button" onclick="ftpSecureFX();" href="#">FTP</a>
+			</div>
+			<!-- TELNET BUTTON 
+			<div id="section-telnetButton">
+				<a class="ghost-button is-red telnet-button" onclick="telnetSecureCRT();" href="#">Telnet</a>
+			</div>
+			<div class="clear"></div> -->
+
+
+			<!--SPACER-->
+			<div style="line-height:6px;"><br></div>
+		</div>
+
+
+		<!-- PING AREA -->
+		<div id="area-ping" class="slideInRight animated">
+			<!--DIVIDER-->
+			<hr>
+			<!-- PING HOSTNAME BOX -->
+			<div id="section-pingHostname">
+			<div style="line-height:6px;"><br></div>
+				<input id="item-pingHostname" type="text" value="" onkeypress="">
+			</div>
+			<!-- DNS LOOKUP -->
+			<div id="section-pingDNS">
+			<div style="line-height:1px;"><br></div>
+				DNS
+				<div class="onoffswitch">
+					<input id="pingDNS" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox">
+					<label class="onoffswitch-label" for="pingDNS"></label>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div style="line-height:3px;"><br></div>
+			<!-- PING BUTTON -->
+			<div id="section-pingButton">
+				<a class="ghost-button is-purple ping-button" onclick="pingPong();" href="#"><div style="line-height:1px;"><br></div>PING</a>
+			</div>
+			<!-- TRACERT BUTTON -->
+			<div id="section-tracertButton">
+				<a class="ghost-button is-purple tracert-button" onclick="tracert();" href="#"><div style="line-height:1px;"><br></div>TRACERT</a>
+			</div>
+			<div class="clear"></div>
+			<div style="line-height:6px;"><br></div>
+		</div>
+
+
+		<!-- CONSOLE AREA -->
+		<div id="area-console" class="slideInRight animated">
+			<!--DIVIDER-->
+			<hr>
+			<div style="line-height:6px;"><br></div>
+			<!-- COM Port selection -->
+			<div id="section-comPort">
+				<select id="item-comPort" class="border-consoleItems" size="1">
+				<option value="NULL">COM</option>
+				<option value="1" style="background-color: black;" >COM1</option>
+				<option value="2" >COM2</option>
+				<option value="3" >COM3</option>
+				<option value="4" >COM4</option>
+				<option value="5" >COM5</option>
+				<option value="6" >COM6</option>
+				<option value="7" >COM7</option>
+				<option value="8" >COM8</option>
+				<option value="9" >COM9</option>
+				<option value="10" >COM10</option>
+				<option value="11" >COM11</option>
+				<option value="12" >COM12</option>
+				<option value="13" >COM13</option>
+				<option value="14" >COM14</option>
+				<option value="15" >COM15</option>
+				<option value="16" >COM16</option>
+				<option value="17" >COM17</option>
+				<option value="18" >COM18</option>
+				<option value="19" >COM19</option>
+			</select>
+			</div>
+			<!-- COM PORT CHECK BATCH SCRIPT -->
+			<div id="section-comPortCheck">
+				<a id="button-comPortCheck" href="#" class="ghost-button is-blue font-bold" onclick="vbscript:comlist">?</a>
+			</div>
+			<!-- BAUD RATE SELECTION - Force BAUD selection to remind that it may be different -->
+			<div id="section-baud">
+				<select id="item-baud" class="border-consoleItems" size="1">
+				<option value="NULL" style="color: #63b8ee">BAUD</option>
+				<option value="9600" style="background-color:lightgray; color:black">9600</option>
+				<option value="115200" style="background-color:#ff4c4c; color:black">115200</option>
+				</select>
+			</div>
+			<div class="clear"></div>
+			<div style="line-height:3px;"><br></div>
+			<!-- LOG CONSOLE TO DESKTOP -->
+			<div id="section-consoleLog">
+				LOG
+				<div class="onoffswitch">
+					<input id="consoleLogToDesktopSwitch" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox">
+					<label class="onoffswitch-label" for="consoleLogToDesktopSwitch"></label>
+				</div>
+			</div>
+			<!-- CONSOLE BUTTON -->
+			<div id="section-consoleButton">
+				<a id="button-console" class="ghost-button is-blue" onclick="consoleSecureCRT();" href="#"><div style="line-height:1px;"><br></div>CONSOLE</a>
+			</div>
+			<div class="clear"></div>
+			<div style="line-height:5px;"><br></div>
+		</div>
+
+		<!-- OTHER AREA -->
+		<div id="area-other" class="slideInUp animated">
+			<!--DIVIDER-->
+			<hr>
+			<div style="line-height:30%;"><br></div>
+
+		   <!-- <a href="./subnetcalculator/index.html" class="animsition-link">calc</a>
+			<a href="./pacman.html" class="animsition-link">game</a>-->
+			<div class="item-div-buttonSlot"><input id="button1slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button2slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button3slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button4slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+			<div class="item-div-buttonSlot"><input id="button5slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button6slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button7slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button8slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+			<div class="item-div-buttonSlot"><input id="button9slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button10slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button11slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button12slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+			<div class="item-div-buttonSlot"><input id="button13slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button14slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button15slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button16slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+			<div class="item-div-buttonSlot"><input id="button17slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button18slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button19slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button20slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+			<div class="item-div-buttonSlot"><input id="button21slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button22slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button23slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="item-div-buttonSlot"><input id="button24slot" class="item-input-buttonSlot" type="image"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+
+<!-- animsition.css -->
+<link rel="stylesheet" href="animsition/css/animsition.min.css">
+<!-- jQuery 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="animsition/js/animsition.min.js"></script>
+<script src="js/script.js"></script>
+
+  <script>
+	//CALL AMNISITION
+  $(".animsition").animsition({
+    //inClass: 'fade-in',
+    outClass: 'fade-out',
+    //inDuration: 1500,
+    outDuration: 800,
+    linkElement: '.animsition-link',
+    // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+    loading: true,
+    loadingParentElement: 'body', //animsition wrapper element
+    loadingClass: 'animsition-loading',
+    loadingInner: '', // e.g '<img src="loading.svg" />'
+    timeout: false,
+    timeoutCountdown: 5000,
+    onLoadEvent: true,
+    browser: [ 'animation-duration', '-webkit-animation-duration'],
+    // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+    // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+    overlay : false,
+    overlayClass : 'animsition-overlay-slide',
+    overlayParentElement : 'body',
+    transition: function(url){ window.location.href = url; }
+  });
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "launchpad-js",
+  "main": "index.html",
+  "description": "SecureCRT Front End",
+  "version": "0.1.0",
+  "window": {
+    "title": "LaunchPad JS",
+    "icon": "icon.png",
+    "toolbar": true,
+	"frame": false,
+    "show": false,
+    "position": "center",
+    //"width": 364,
+	"width": 344,
+    "height": 489,
+	"resizable": false,
+	"transparent": true
+  },
+  "scripts": {
+    "start": "nw ."
+  }
+}
