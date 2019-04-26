@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Applications</title>
+
+	<!-- GENERAL STYLING -->
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<!-- ANIMATIONS FOR OPENING APP -->
+	<link href="css/animate.css" rel="stylesheet" type="text/css">
+	<!-- SHELL COMMANDS FOR EXECUTING EXTERNAL APPLICATIONS -->
+	<script src="js/shellcommands.js"></script>
+
+</head>
+
+<!-- WRAPPER FOR TRANSITIONS -->
+<div id="wrapper" class="animsition">
+
+	<!-- TITLE BAR -->
+	<div id="title-bar">
+		<!-- WINDOW ICON -->
+		<img id="item-titleIcon" class="rotateInUpRight animated fly-out" src="icon.png" />
+		<!-- TITLE -->
+		<div class="slideInDown animated" id="title">LaunchPad JS - Applications</div>
+		<!-- CLOSE BUTTON -->
+		<button class="fadeIn animated" id="close" href="#">&times;</button>
+	</div>
+	
+		<!-- OTHER AREA -->
+		<div id="area-other" class="slideInUp animated">
+			<table cellspacing="8">
+				<tr>
+					<td>
+						<a href="../index.html" class="animsition-link"><img src="imgs/back-button.png"></a>
+					</td>
+					<td>
+					</td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- OTHER AREA -->
+		<div id="area-other" class="slideInUp animated">
+			<!--DIVIDER-->
+			<div style="line-height:30%;"><br></div>
+
+		   <!-- <a href="./subnetcalculator/index.html" class="animsition-link">calc</a>
+			<a href="./pacman.html" class="animsition-link">game</a>-->
+			<center>
+			<table cellspacing="8">
+				<tr>
+					<td>
+						<img class="application-button" src="imgs/notepad.png">
+					</td>
+					<td>
+					</td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+			</center>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+
+<!-- animsition.css -->
+<link rel="stylesheet" href="animsition/css/animsition.min.css">
+<!-- jQuery 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<!-- animsition.js -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="animsition/js/animsition.min.js"></script>
+<script src="script.js"></script>
+
+  <script>
+	//CALL AMNISITION
+  $(".animsition").animsition({
+    //inClass: 'fade-in',
+    outClass: 'fade-out',
+    //inDuration: 1500,
+    outDuration: 800,
+    linkElement: '.animsition-link',
+    // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+    loading: true,
+    loadingParentElement: 'body', //animsition wrapper element
+    loadingClass: 'animsition-loading',
+    loadingInner: '', // e.g '<img src="loading.svg" />'
+    timeout: false,
+    timeoutCountdown: 5000,
+    onLoadEvent: true,
+    browser: [ 'animation-duration', '-webkit-animation-duration'],
+    // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+    // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+    overlay : false,
+    overlayClass : 'animsition-overlay-slide',
+    overlayParentElement : 'body',
+    transition: function(url){ window.location.href = url; }
+  });
+
+
+</script>
+</body>
+
+</html>
